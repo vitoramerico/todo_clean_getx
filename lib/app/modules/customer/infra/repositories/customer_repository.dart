@@ -18,8 +18,6 @@ class CustomerRepository implements ICustomerRepository {
 
       var result = await _customerDatasource.save(mapper);
 
-      if (result == null) return Left(DatasourceError('Erro ao salvar dados'));
-
       return Right(result);
     } on ArgumentError catch (error) {
       return Left(DatasourceError(error.message));

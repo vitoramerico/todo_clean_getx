@@ -6,10 +6,10 @@ class CircularButtonWidget extends StatelessWidget {
   final Function() onPressed;
 
   const CircularButtonWidget({
-    Key key,
+    Key? key,
     this.isLoading = false,
-    @required this.icon,
-    @required this.onPressed,
+    required this.icon,
+    required this.onPressed,
   }) : super(key: key);
 
   @override
@@ -22,15 +22,17 @@ class CircularButtonWidget extends StatelessWidget {
               padding: const EdgeInsets.all(5),
               child: const CircularProgressIndicator(),
             )
-          : RaisedButton(
-              onPressed: onPressed,
-              padding: const EdgeInsets.all(0),
-              color: Theme.of(context).accentColor,
+          : ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.all(0),
+                shape: const StadiumBorder(),
+                primary: Theme.of(context).accentColor,
+              ),
               child: Icon(
                 icon,
                 color: Colors.white,
               ),
-              shape: StadiumBorder(),
+              onPressed: onPressed,
             ),
     );
   }

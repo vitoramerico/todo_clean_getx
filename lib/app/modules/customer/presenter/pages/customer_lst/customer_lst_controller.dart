@@ -15,11 +15,11 @@ class CustomerLstController extends GetxController with StateMixin<List<Customer
   @override
   void onInit() {
     super.onInit();
-    ever(store.paginationFilter, (_) => _init());
-    _changePaginationFilter(1, 20);
+    ever(store.paginationFilter, (_) => _getData());
+    _changePaginationFilter(1, 15);
   }
 
-  Future<void> _init() async {
+  Future<void> _getData() async {
     var result = await _customerGetAll(store.page, store.limit);
 
     result.fold((error) {
@@ -33,7 +33,7 @@ class CustomerLstController extends GetxController with StateMixin<List<Customer
     });
   }
 
-  void openPageCustomerAdd({CustomerEntity value}) {
+  void openPageCustomerAdd({CustomerEntity? value}) {
     Get.toNamed(Get.currentRoute + Routes.DETAILS, arguments: value?.id).then((value) {
       if (value != null && value) {
         _changeFirstPage();
@@ -46,7 +46,7 @@ class CustomerLstController extends GetxController with StateMixin<List<Customer
   void _changeFirstPage() {
     store.lstCustomer.clear();
     store.lastPage = false;
-    _changePaginationFilter(1, 20);
+    _changePaginationFilter(1, 15);
   }
 
   void _changePaginationFilter(int page, int limit) {

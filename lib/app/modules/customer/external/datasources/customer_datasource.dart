@@ -22,13 +22,13 @@ class CustomerDatasource implements ICustomerDatasource {
     var result = await client.get<ResultModel>(
       '$URL_BASE/get',
       query: parameters,
-      decoder: (v) => ResultModel.fromMap(v),
+      decoder: (v) => ResultModel.fromJson(v),
     );
 
     if (result.hasError)
       throw ArgumentError(result.statusCode == 400 ? result.body.errorText : result.statusText);
 
-    return CustomerModel.fromMap(result.body.data);
+    return CustomerModel.fromJson(result.body.data);
   }
 
   @override
@@ -36,14 +36,14 @@ class CustomerDatasource implements ICustomerDatasource {
     var client = _customDio.instance;
 
     var parameters = {
-      'page': page?.toString(),
-      'pageSize': pageSize?.toString(),
+      'page': page.toString(),
+      'pageSize': pageSize.toString(),
     };
 
     var result = await client.get<ResultModel>(
       '$URL_BASE/getAll',
       query: parameters,
-      decoder: (v) => ResultModel.fromMap(v),
+      decoder: (v) => ResultModel.fromJson(v),
     );
 
     if (result.hasError)
@@ -51,7 +51,7 @@ class CustomerDatasource implements ICustomerDatasource {
 
     List<dynamic> data = result.body.data;
 
-    return data.map((v) => CustomerModel.fromMap(v)).toList();
+    return data.map((v) => CustomerModel.fromJson(v)).toList();
   }
 
   @override
@@ -61,7 +61,7 @@ class CustomerDatasource implements ICustomerDatasource {
     var result = await client.post<ResultModel>(
       '$URL_BASE/add',
       customerModel.toJson(),
-      decoder: (v) => ResultModel.fromMap(v),
+      decoder: (v) => ResultModel.fromJson(v),
     );
 
     if (result.hasError)
@@ -77,7 +77,7 @@ class CustomerDatasource implements ICustomerDatasource {
     var result = await client.post<ResultModel>(
       '$URL_BASE/edit',
       customerModel.toJson(),
-      decoder: (v) => ResultModel.fromMap(v),
+      decoder: (v) => ResultModel.fromJson(v),
     );
 
     if (result.hasError)

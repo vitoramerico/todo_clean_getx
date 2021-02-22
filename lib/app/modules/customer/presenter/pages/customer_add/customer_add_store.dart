@@ -19,49 +19,49 @@ class CustomerAddStore extends GetxController {
 
   final _id = ''.obs;
   set id(String value) => _id.value = value;
-  get id => _id.value;
+  String get id => _id.value;
 
   final _name = ''.obs;
   set name(String value) => _name.value = value;
-  get name => _name.value;
+  String get name => _name.value;
 
   var birthDate = DateTime.now();
 
   final _documentNumber = ''.obs;
   set documentNumber(String value) => _documentNumber.value = value;
-  get documentNumber => _documentNumber.value;
+  String get documentNumber => _documentNumber.value;
 
   final _emailAddress = ''.obs;
   set emailAddress(String value) => _emailAddress.value = value;
-  get emailAddress => _emailAddress.value;
+  String get emailAddress => _emailAddress.value;
 
   final _addressStreet = ''.obs;
   set addressStreet(String value) => _addressStreet.value = value;
-  get addressStreet => _addressStreet.value;
+  String get addressStreet => _addressStreet.value;
 
   final _addressNumber = ''.obs;
   set addressNumber(String value) => _addressNumber.value = value;
-  get addressNumber => _addressNumber.value;
+  String get addressNumber => _addressNumber.value;
 
   final _addressNeighborhood = ''.obs;
   set addressNeighborhood(String value) => _addressNeighborhood.value = value;
-  get addressNeighborhood => _addressNeighborhood.value;
+  String get addressNeighborhood => _addressNeighborhood.value;
 
   final _addressCity = ''.obs;
   set addressCity(String value) => _addressCity.value = value;
-  get addressCity => _addressCity.value;
+  String get addressCity => _addressCity.value;
 
   final _addressState = ''.obs;
   set addressState(String value) => _addressState.value = value;
-  get addressState => _addressState.value;
+  String get addressState => _addressState.value;
 
   final _addressZipCode = ''.obs;
   set addressZipCode(String value) => _addressZipCode.value = value;
-  get addressZipCode => _addressZipCode.value;
+  String get addressZipCode => _addressZipCode.value;
 
   final _loadingZipCode = false.obs;
   set loadingZipCode(bool value) => _loadingZipCode.value = value;
-  get loadingZipCode => _loadingZipCode.value;
+  bool get loadingZipCode => _loadingZipCode.value;
 
   CustomerAddStore() {
     ever(_id, (String v) => tecId.value = tecId.value.copyWith(text: v));

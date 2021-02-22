@@ -15,7 +15,7 @@ class CepDatasource extends GetConnect implements ICepDatasource {
   Future<CepModel> getCep(String cep) async {
     var result = await get<CepModel>(
       '$cep/json',
-      decoder: (v) => CepModel.fromMap(v),
+      decoder: (v) => CepModel.fromJson(v),
     );
 
     if (result.hasError) throw Exception(result.statusText);

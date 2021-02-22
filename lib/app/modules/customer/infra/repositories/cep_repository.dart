@@ -17,7 +17,7 @@ class CepRepository implements ICepRepository {
 
       return Right(result);
     } catch (error) {
-      return Left(DatasourceError(error.message ?? error.toString()));
+      return Left(DatasourceError(error.toString()));
     }
   }
 }

@@ -2,6 +2,8 @@ class PaginationFilter {
   int page;
   int limit;
 
+  PaginationFilter(this.page, this.limit);
+
   @override
   String toString() => 'PaginationFilter(page: $page, limit: $limit)';
 

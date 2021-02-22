@@ -1,7 +1,10 @@
-import 'dart:convert';
-
 import '../../domain/entities/cep_entity.dart';
 
+import 'package:json_annotation/json_annotation.dart';
+
+part 'cep_model.g.dart';
+
+@JsonSerializable()
 class CepModel extends CepEntity {
   final String cep;
   final String logradouro;
@@ -15,16 +18,16 @@ class CepModel extends CepEntity {
   final String siafi;
 
   CepModel({
-    this.cep,
-    this.logradouro,
-    this.complemento,
-    this.bairro,
-    this.localidade,
-    this.uf,
-    this.ibge,
-    this.gia,
-    this.ddd,
-    this.siafi,
+    required this.cep,
+    required this.logradouro,
+    required this.complemento,
+    required this.bairro,
+    required this.localidade,
+    required this.uf,
+    required this.ibge,
+    required this.gia,
+    required this.ddd,
+    required this.siafi,
   }) : super(
           cep,
           logradouro,
@@ -38,39 +41,7 @@ class CepModel extends CepEntity {
           siafi,
         );
 
-  Map<String, dynamic> toMap() {
-    return {
-      'cep': cep,
-      'logradouro': logradouro,
-      'complemento': complemento,
-      'bairro': bairro,
-      'localidade': localidade,
-      'uf': uf,
-      'ibge': ibge,
-      'gia': gia,
-      'ddd': ddd,
-      'siafi': siafi,
-    };
-  }
+  factory CepModel.fromJson(Map<String, dynamic> json) => _$CepModelFromJson(json);
 
-  factory CepModel.fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
-
-    return CepModel(
-      cep: map['cep'],
-      logradouro: map['logradouro'],
-      complemento: map['complemento'],
-      bairro: map['bairro'],
-      localidade: map['localidade'],
-      uf: map['uf'],
-      ibge: map['ibge'],
-      gia: map['gia'],
-      ddd: map['ddd'],
-      siafi: map['siafi'],
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory CepModel.fromJson(String source) => CepModel.fromMap(json.decode(source));
+  Map<String, dynamic> toJson() => _$CepModelToJson(this);
 }

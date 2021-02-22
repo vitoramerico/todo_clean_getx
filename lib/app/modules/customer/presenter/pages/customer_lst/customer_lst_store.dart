@@ -7,7 +7,7 @@ class CustomerLstStore extends GetxController {
   final _lstCustomer = <CustomerEntity>[].obs;
   List<CustomerEntity> get lstCustomer => _lstCustomer;
 
-  final paginationFilter = PaginationFilter().obs;
+  final paginationFilter = PaginationFilter(1, 15).obs;
   int get limit => paginationFilter.value.limit;
   int get page => paginationFilter.value.page;
 

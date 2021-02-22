@@ -36,7 +36,7 @@ extension SnackBarTpEnumExt on SnackBarTpEnum {
     }
   }
 
-  IconData get icon {
+  IconData? get icon {
     switch (this) {
       case SnackBarTpEnum.sucess:
         return Icons.check;
@@ -55,7 +55,7 @@ class MySnackBarModel {
   SnackBarTpEnum type;
   int seconds;
 
-  MySnackBarModel({this.msg, this.type = SnackBarTpEnum.sucess, this.seconds: snackBarDefaultTime});
+  MySnackBarModel({this.msg = ' ', this.type = SnackBarTpEnum.sucess, this.seconds: snackBarDefaultTime});
 }
 
 class MySnackBar {

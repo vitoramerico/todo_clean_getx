@@ -1,10 +1,14 @@
-import 'dart:convert';
-
 import '../../domain/entities/customer_entity.dart';
 
+import 'package:json_annotation/json_annotation.dart';
+
+part 'customer_model.g.dart';
+
+@JsonSerializable()
 class CustomerModel extends CustomerEntity {
   final String id;
   final String name;
+  @JsonKey(fromJson: _dateTimeFromMap, toJson: _dateTimeToMap)
   final DateTime birthDate;
   final String documentNumber;
   final String addressStreet;
@@ -16,17 +20,17 @@ class CustomerModel extends CustomerEntity {
   final String emailAddress;
 
   CustomerModel({
-    this.id,
-    this.name,
-    this.birthDate,
-    this.documentNumber,
-    this.addressStreet,
-    this.addressNumber,
-    this.addressNeighborhood,
-    this.addressCity,
-    this.addressState,
-    this.addressZipCode,
-    this.emailAddress,
+    required this.id,
+    required this.name,
+    required this.birthDate,
+    required this.documentNumber,
+    required this.addressStreet,
+    required this.addressNumber,
+    required this.addressNeighborhood,
+    required this.addressCity,
+    required this.addressState,
+    required this.addressZipCode,
+    required this.emailAddress,
   }) : super(
           id,
           name,
@@ -41,43 +45,7 @@ class CustomerModel extends CustomerEntity {
           emailAddress,
         );
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'birthDate': birthDate?.toIso8601String(),
-      'documentNumber': documentNumber,
-      'addressStreet': addressStreet,
-      'addressNumber': addressNumber,
-      'addressNeighborhood': addressNeighborhood,
-      'addressCity': addressCity,
-      'addressState': addressState,
-      'addressZipCode': addressZipCode,
-      'emailAddress': emailAddress,
-    };
-  }
-
-  factory CustomerModel.fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
-
-    return CustomerModel(
-      id: map['id'],
-      name: map['name'],
-      birthDate: map['birthDate'] != null ? DateTime.parse(map['birthDate']) : null,
-      documentNumber: map['documentNumber'],
-      addressStreet: map['addressStreet'],
-      addressNumber: map['addressNumber'],
-      addressNeighborhood: map['addressNeighborhood'],
-      addressCity: map['addressCity'],
-      addressState: map['addressState'],
-      addressZipCode: map['addressZipCode'],
-      emailAddress: map['emailAddress'],
-    );
-  }
-
   factory CustomerModel.fromEntity(CustomerEntity customerEntity) {
-    if (customerEntity == null) return null;
-
     return CustomerModel(
       id: customerEntity.id,
       name: customerEntity.name,
@@ -93,7 +61,11 @@ class CustomerModel extends CustomerEntity {
     );
   }
 
-  String toJson() => json.encode(toMap());
+  factory CustomerModel.fromJson(Map<String, dynamic> json) => _$CustomerModelFromJson(json);
 
-  factory CustomerModel.fromJson(String source) => CustomerModel.fromMap(json.decode(source));
+  Map<String, dynamic> toJson() => _$CustomerModelToJson(this);
+
+  static DateTime _dateTimeFromMap(String date) => DateTime.parse(date);
+
+  static String _dateTimeToMap(DateTime dateTime) => dateTime.toIso8601String();
 }

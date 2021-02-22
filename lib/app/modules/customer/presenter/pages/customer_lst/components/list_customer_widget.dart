@@ -9,7 +9,7 @@ import 'itens_customer_widget.dart';
 class ListCustomerWidget extends StatelessWidget {
   final CustomerLstController controller;
 
-  const ListCustomerWidget({Key key, @required this.controller}) : super(key: key);
+  const ListCustomerWidget({Key? key, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

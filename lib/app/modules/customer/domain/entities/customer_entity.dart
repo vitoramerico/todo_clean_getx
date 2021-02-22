@@ -26,17 +26,17 @@ class CustomerEntity {
   );
 
   CustomerEntity copyWith({
-    String id,
-    String name,
-    DateTime birthDate,
-    String documentNumber,
-    String addressStreet,
-    String addressNumber,
-    String addressNeighborhood,
-    String addressCity,
-    String addressState,
-    String addressZipCode,
-    String emailAddress,
+    String? id,
+    String? name,
+    DateTime? birthDate,
+    String? documentNumber,
+    String? addressStreet,
+    String? addressNumber,
+    String? addressNeighborhood,
+    String? addressCity,
+    String? addressState,
+    String? addressZipCode,
+    String? emailAddress,
   }) {
     return CustomerEntity(
       id ?? this.id,
@@ -53,8 +53,5 @@ class CustomerEntity {
     );
   }
 
-  bool get isValid =>
-      (name?.isNotEmpty ?? false) &&
-      (documentNumber?.isNotEmpty ?? false) &&
-      (emailAddress?.isNotEmpty ?? false);
+  bool get isValid => name.isNotEmpty && documentNumber.isNotEmpty && emailAddress.isNotEmpty;
 }

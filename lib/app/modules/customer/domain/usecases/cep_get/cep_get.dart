@@ -12,7 +12,7 @@ class CepGet implements ICepGet {
 
   @override
   Future<Either<CustomerError, CepEntity>> call(String cep) async {
-    if (cep == null || cep.isEmpty) return Left(ValidationError('Cep é obrigatório'));
+    if (cep.isEmpty) return Left(ValidationError('Cep é obrigatório'));
 
     return _cepRepository.get(cep);
   }

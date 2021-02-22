@@ -5,7 +5,7 @@ import '../customer_add_controller.dart';
 class BottomNavigationBarWidget extends StatelessWidget {
   final CustomerAddController controller;
 
-  const BottomNavigationBarWidget({Key key, @required this.controller}) : super(key: key);
+  const BottomNavigationBarWidget({Key? key, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
